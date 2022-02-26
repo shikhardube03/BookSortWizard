@@ -24,6 +24,12 @@ def group_lines_into_books(sequence, separator):
         book.append(elem)
     yield book
 
-result = list(group_lines_into_books(all_lines, ''))
-print(result)
+def remove_empty_strings(sequence):
+    empty_list = ['']
+    while empty_list in sequence:
+        sequence.remove(empty_list)
 
+result = list(group_lines_into_books(all_lines, ''))
+remove_empty_strings(result)
+
+print(result)
