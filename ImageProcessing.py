@@ -27,6 +27,3 @@ def group_lines_into_books(sequence, separator):
 result = list(group_lines_into_books(all_lines, ''))
 print(result)
 
-    
-
-#note: . sometimes gets read as -
