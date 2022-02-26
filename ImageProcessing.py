@@ -1,8 +1,8 @@
-import pillow
-from pillow import Image
+import os
+from PIL import Image
+import pytesseract as pt
 
-import pytesseract
+print(pt.image_to_string('TestImages/dewydecimal.jpg'))
 
-print(pytesseract.image_to_string('Dewey-Decimal.jpeg'))
 print("Hello world")
 
