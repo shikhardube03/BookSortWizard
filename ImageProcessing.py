@@ -6,6 +6,40 @@ import matplotlib.pyplot as plt
 from IPython.display import display
 from pytesseract import image_to_string
 from PIL import Image
+from sympy import sequence
+import sorting
+
+
+def make_label_list(big_list):
+	shelf_list = list()
+	label = sorting.Label()
+	for little_list in big_list:
+		for elem in little_list:
+			if (len(little_list) == 5):
+				l1 = sorting.Label(little_list[0], little_list[1], little_list[2],little_list[3], little_list[4])
+				shelf_list.append(l1)
+			if (len(little_list) == 4):
+				l2 = sorting.Label(little_list[0], little_list[1], little_list[2],little_list[3], None)
+				shelf_list.append(l2)
+			if (len(little_list) == 3):
+				l1 = sorting.Label(little_list[0], little_list[1], little_list[2], None, None)
+			if (len(little_list) == 2):
+				l1 = sorting.Label(None, little_list[1])
+				if (isalpha(little_list[0])):
+					l1.firstLine = little_list[0]
+					l1.secondLine = little_list[1]
+					l1.thirdLine = None
+					l1.year = None
+					l1.version = None
+					shelf_list.append(l1)
+				else:
+					l1.firstLine = None
+					l1.secondLine = little_list[2]
+					l1.thirdLine = None
+					l1.year = None
+					l1.version = None
+					shelf_list.append(l1)
+	return shelf_list			
 
 
 # tesseract --help-extra or tesseract --help-psm to find info about the segmentation modes
@@ -64,5 +98,7 @@ def remove_empty_strings(sequence):
 
 result = remove_empty_strings(result)
 print(result)
+print(make_label_list(result))
+
 
 
