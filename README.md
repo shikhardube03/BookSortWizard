@@ -1,4 +1,5 @@
-BookSortWizard
+# BookSortWizard
+
 Sort library shelves quickly and effortlessly!
 
 Image Processing: Shelf reading app for UIUC libraries
