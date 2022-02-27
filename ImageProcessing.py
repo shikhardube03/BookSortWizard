@@ -26,7 +26,6 @@ cv2.destroyAllWindows()
 
 # gets OCR data as string from passed image
 data = tess.image_to_string(img, lang = 'eng',config='--psm 1')
-print(data)
 
 all_lines = data.splitlines()
 print(all_lines)
@@ -44,14 +43,26 @@ def group_lines_into_books(sequence, separator):
 result = list(group_lines_into_books(all_lines, ''))
 
 def remove_empty_strings(sequence):
-    empty_list = ['']
-    empty_string = ''
-    while empty_list in sequence:
-        sequence.remove(empty_list)
-    for little_list in sequence:
-        string_value = little_list
-        s = ''.join(ch for ch in little_list if ch.isalnum())
-            
+	new_book_list = list()
+	for little_list in sequence:
+		if isinstance(little_list, list):
+			new = list()
+			for elem in little_list:
+				if elem != '':
+					new.append(elem)
+			if len(new) == 0:
+				continue
+		elif isinstance(little_list, str):
+			if little_list == '':
+				continue
+			new = little_list
+		else:
+			new = little_list
+		new_book_list.append(new)
+	return new_book_list
+    
 
-remove_empty_strings(result)
+result = remove_empty_strings(result)
 print(result)
+
+
